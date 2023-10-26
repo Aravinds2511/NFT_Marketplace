@@ -42,11 +42,11 @@ export default function ResellNFT() {
     let transaction = await contract.resellToken(id, priceFormatted, {
       value: listingPrice,
     });
-    await transaction.await();
+    await transaction.wait();
 
     router.push("/");
   }
-  reuturn(
+  return (
     <div className="flex justify-center">
       <div className="w-1/2 flex flex-col pb-12">
         <input

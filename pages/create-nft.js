@@ -5,15 +5,14 @@ import { useRouter } from "next/router";
 import Web3Modal from "web3modal";
 const axios = require("axios");
 const FormData = require("form-data");
-//const fs = require("fs")
-// const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
+// const fs = require("fs");
+const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
 import { marketplaceAddress } from "../config";
 
 import NFTMarketplace from "../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
 const JWT =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIwZjBiY2QzMC1kNjI5LTRiNTItYTQ4Mi00OWZmZjM1OWY0NDIiLCJlbWFpbCI6ImFydm5kd2luZEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiMDcxM2ZjMDU0YjExNTg1YTZjYjIiLCJzY29wZWRLZXlTZWNyZXQiOiIxNWE5NGFmNGQ2OThhM2Y5OGMyM2JkNTQ5MTdiOGI1ZTAyZDdiY2Y3MWM0MGI4NDNhZDRiNmFlNTFmZjI4YjIzIiwiaWF0IjoxNjk3MDMxODkzfQ.E_qpvDlKzMCnLh9Io6aCopFd7q1uOjfYSP62sK8nn4c";
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIwZjBiY2QzMC1kNjI5LTRiNTItYTQ4Mi00OWZmZjM1OWY0NDIiLCJlbWFpbCI6ImFydm5kd2luZEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiZmRkNzIzYTU4NjIwZDk5MDRhMDQiLCJzY29wZWRLZXlTZWNyZXQiOiI1YzRkNzU5ZTQwYTdlZDQzMWE3N2VjNjBkM2UwNDQ0ZTNiYzU1ZWFlY2JiMzYwMDlmZjUzMjc0NTAxOGYzMmIwIiwiaWF0IjoxNjk4MzE0MDc2fQ.35TCg5QZu5ja7cNbWkgDcrCNWZfIunu4hAk3pPBBmpQ";
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null);
   const [formInput, updateFormInput] = useState({
