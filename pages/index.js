@@ -15,7 +15,9 @@ export default function Home() {
   }, []);
   async function loadNFTs() {
     // creates generic provider and query for unsold items
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://eth-sepolia.g.alchemy.com/v2/7Qx1ObkUWFDGLcbThK7KwzvOlRsgqm6x"
+    );
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,
